@@ -47,9 +47,9 @@ var stylesheets = function(path, options, callback){
 		options.forEach(function(option){
 			switch (option) {
 				case 'style_unstable':
-					copy('./building-blocks/style_unstable', path + '/building-blocks', function(error){
+					copy('./building-blocks/style_unstable', path + '/building-blocks/style_unstable', function(error){
 						if(error) return callback(error);
-						var styleUnstableFile = path + 'style_unstable.css';
+						var styleUnstableFile = './building-blocks/style_unstable.css';
 						copy(styleUnstableFile, path, function(error){
 							if(error) return callback(error);
 							results.push(styleUnstableFile);
@@ -57,9 +57,9 @@ var stylesheets = function(path, options, callback){
 					});
 					break;
 				case 'icons':
-					copy('./building-blocks/icons', path + '/building-blocks', function(error){
+					copy('./building-blocks/icons', path + '/building-blocks/icons', function(error){
 						if(error) return callback(error);
-						var styleIconsFile = path + 'style_icons.css';
+						var styleIconsFile = './building-blocks/style_icons.css';
 						copy(styleIconsFile, path, function(error){
 							if(error) return callback(error);
 							results.push(styleIconsFile);
@@ -67,9 +67,9 @@ var stylesheets = function(path, options, callback){
 					});
 					break;
 				default:
-					copy('./building-blocks/style', path + '/building-blocks', function(error){
+					copy('./building-blocks/style', path + '/building-blocks/style', function(error){
 						if(error) return callback(error);
-						var styleFile = path + 'style.css';
+						var styleFile = './building-blocks/style.css';
 						copy(styleFile, path, function(error){
 							if(error) return callback(error);
 							results.push(styleFile);
