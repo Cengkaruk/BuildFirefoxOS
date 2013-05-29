@@ -9,6 +9,6 @@
     "should": "*",
     "slug": "*",
     "mkdirp": "*",
-    "ncp": "*"
+    "fs-extra": "*"
   }
 }
