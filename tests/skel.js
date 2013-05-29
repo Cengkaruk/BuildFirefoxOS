@@ -52,6 +52,52 @@ describe('Stylesheets Skeleton with all options', function(){
 	})
 
 	it('should generated without error', function(done){
+		resultArray.should.have.length(3);
+    done();
+	})
+})
+
+describe('Stylesheets Skeleton with 2 options', function(){
+	var path = '/tmp';
+	var name = 'An App';
+	var resultArray = [];
+
+	beforeEach(function(done){
+		skel.base(path, name, function(error, result){
+			if(error) return done(error);
+			skel.stylesheets(result, ['style', 'style_unstable'], function(error, result){
+				if (error) return done(error);
+				resultArray = result;
+				done();
+			});
+		});
+	})
+
+	it('should generated without error', function(done){
+		resultArray.should.have.length(2);
+    done();
+	})
+})
+
+describe('Stylesheets Skeleton with 1 options', function(){
+	var path = '/tmp';
+	var name = 'An App';
+	var resultArray = [];
+
+	beforeEach(function(done){
+		skel.base(path, name, function(error, result){
+			if(error) return done(error);
+			skel.stylesheets(result, ['style'], function(error, result){
+				if (error) return done(error);
+				resultArray = result;
+				done();
+			});
+		});
+	})
+
+	it('should generated without error', function(done){
 		console.log(resultArray);
+		resultArray.should.have.length(1);
+    done();
 	})
 })

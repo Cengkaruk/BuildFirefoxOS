@@ -41,6 +41,9 @@ exports.base = base;
 var stylesheets = function(path, options, callback){
 	path = path + '/assets/stylesheets';
 	var results = [];
+		var pending = options.length;
+ 		if(!pending) return callback(null, results);
+
 		options.forEach(function(option){
 			switch (option) {
 				case 'style_unstable':
@@ -50,6 +53,7 @@ var stylesheets = function(path, options, callback){
 						fs.copy(styleUnstableFile, path + '/style_unstable.css', function(error){
 							if(error) return callback(error);
 							results.push(styleUnstableFile);
+							if(!--pending) callback(null, results);
 						});
 					});
 					break;
@@ -60,6 +64,7 @@ var stylesheets = function(path, options, callback){
 						fs.copy(styleIconsFile, path + '/style_icons.css', function(error){
 							if(error) return callback(error);
 							results.push(styleIconsFile);
+							if(!--pending) callback(null, results);
 						});
 					});
 					break;
@@ -70,10 +75,10 @@ var stylesheets = function(path, options, callback){
 						fs.copy(styleFile, path + '/style.css', function(error){
 							if(error) return callback(error);
 							results.push(styleFile);
+							if(!--pending) callback(null, results);
 						});
 					});
 			}
 		});
-		callback(null, results);
 }
 exports.stylesheets = stylesheets;
