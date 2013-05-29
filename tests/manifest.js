@@ -2,7 +2,7 @@ var manifest = require('../generators/manifest.js'),
 	fs = require('fs'),
 	should = require('should');
 
-describe('Webapp', function(){
+describe('Webapp Manifest', function(){
 	var path = '/tmp';
 	var data = {
 		name: 'Manifest Test',
@@ -34,7 +34,7 @@ describe('Webapp', function(){
 	})
 })
 
-describe('Webapp', function(){
+describe('Appcache Manifest', function(){
 	var path = '/tmp';
 
 	beforeEach(function(done){
