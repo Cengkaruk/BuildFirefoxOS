@@ -1,7 +1,6 @@
 var mkdir = require('mkdirp'),
 	slug = require('slug'),
-	copy = require('ncp').ncp,
-	fs = require('fs');
+	fs = require('fs-extra');
 
 /* Create app directory skeleton
  *	path: String of build path
@@ -47,30 +46,30 @@ var stylesheets = function(path, options, callback){
 		options.forEach(function(option){
 			switch (option) {
 				case 'style_unstable':
-					copy('./building-blocks/style_unstable', path + '/building-blocks/style_unstable', function(error){
+					fs.copy('./building-blocks/style_unstable', path + '/building-blocks/style_unstable', function(error){
 						if(error) return callback(error);
 						var styleUnstableFile = './building-blocks/style_unstable.css';
-						copy(styleUnstableFile, path, function(error){
+						fs.copy(styleUnstableFile, path + '/style_unstable.css', function(error){
 							if(error) return callback(error);
 							results.push(styleUnstableFile);
 						});
 					});
 					break;
 				case 'icons':
-					copy('./building-blocks/icons', path + '/building-blocks/icons', function(error){
+					fs.copy('./building-blocks/icons', path + '/building-blocks/icons', function(error){
 						if(error) return callback(error);
 						var styleIconsFile = './building-blocks/style_icons.css';
-						copy(styleIconsFile, path, function(error){
+						fs.copy(styleIconsFile, path + '/style_icons.css', function(error){
 							if(error) return callback(error);
 							results.push(styleIconsFile);
 						});
 					});
 					break;
 				default:
-					copy('./building-blocks/style', path + '/building-blocks/style', function(error){
+					fs.copy('./building-blocks/style', path + '/building-blocks/style', function(error){
 						if(error) return callback(error);
 						var styleFile = './building-blocks/style.css';
-						copy(styleFile, path, function(error){
+						fs.copy(styleFile, path + '/style.css', function(error){
 							if(error) return callback(error);
 							results.push(styleFile);
 						});
