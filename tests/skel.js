@@ -34,3 +34,24 @@ describe('Base Skeleton', function(){
 		});
 	})
 })
+
+describe('Stylesheets Skeleton with all options', function(){
+	var path = '/tmp';
+	var name = 'An App';
+	var resultArray = [];
+
+	beforeEach(function(done){
+		skel.base(path, name, function(error, result){
+			if(error) return done(error);
+			skel.stylesheets(result, ['style', 'style_unstable', 'icons'], function(error, result){
+				if (error) return done(error);
+				resultArray = result;
+				done();
+			});
+		});
+	})
+
+	it('should generated without error', function(done){
+		console.log(resultArray);
+	})
+})
