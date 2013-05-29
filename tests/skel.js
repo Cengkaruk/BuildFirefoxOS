@@ -96,7 +96,28 @@ describe('Stylesheets Skeleton with 1 options', function(){
 	})
 
 	it('should generated without error', function(done){
-		console.log(resultArray);
+		resultArray.should.have.length(1);
+    done();
+	})
+})
+
+describe('Stylesheets Skeleton without options', function(){
+	var path = '/tmp';
+	var name = 'An App';
+	var resultArray = [];
+
+	beforeEach(function(done){
+		skel.base(path, name, function(error, result){
+			if(error) return done(error);
+			skel.stylesheets(result, function(error, result){
+				if (error) return done(error);
+				resultArray = result;
+				done();
+			});
+		});
+	})
+
+	it('should generated without error', function(done){
 		resultArray.should.have.length(1);
     done();
 	})

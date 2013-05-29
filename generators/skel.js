@@ -39,6 +39,11 @@ exports.base = base;
  *	results: Array of stylesheet fullpath
  */
 var stylesheets = function(path, options, callback){
+	if(typeof(callback) === 'undefined'){
+		callback = options;
+		options = ['style'];
+	}
+
 	path = path + '/assets/stylesheets';
 	var results = [];
 		var pending = options.length;
