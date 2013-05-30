@@ -1,6 +1,9 @@
+var tools = require('./tools.js');
+
 var mkdir = require('mkdirp'),
 	slug = require('slug'),
-	fs = require('fs-extra');
+	fs = require('fs-extra'),
+	hogan = require('hogan.js');
 
 /* Create app directory skeleton
  *	path: String of build path
@@ -87,3 +90,46 @@ var stylesheets = function(path, options, callback){
 		});
 }
 exports.stylesheets = stylesheets;
+
+/* Generate html from template
+ *	path:
+ *	data: object of
+ * 		context: object of muscache variable
+ *			styles: array of style
+ *		template: string of template name
+ */
+var template = function(path, data, callback){
+	if( !data.context ) {
+		callback(tools.formattedError('The data object requires an context object.'));
+		return;
+	}
+
+	if( !data.template ){
+		data.template = 'default';
+	}
+
+	var results = [];
+	tools.listRecursive('./templates/' + data.template, function(error, files){
+		if(error) return callback(error);
+
+		var pending = files.length;
+ 		if(!pending) return callback(null, results);
+
+		files.forEach(function(file){
+			fs.readFile(file, 'utf-8', function(error, readData){
+				if(error) return callback(error, results);
+				readData = hogan.compile(readData);
+				readData = readData.render(data.context);
+
+				var filename = file.split(/(\\|\/)/g).pop();
+				var fullpath = path + '/' + filename;
+				fs.writeFile(fullpath, readData, function(error){
+					if(error) return callback(error, results);
+					results.push(fullpath);
+					if(!--pending) callback(null, results);
+				});
+			});
+		});
+	});
+}
+exports.template = template;

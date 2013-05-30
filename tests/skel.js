@@ -122,3 +122,34 @@ describe('Stylesheets Skeleton without options', function(){
     done();
 	})
 })
+
+describe('Generate html from default template', function(){
+	var path = '/tmp';
+	var name = 'An App';
+	var resultArray = [];
+
+	beforeEach(function(done){
+		skel.base(path, name, function(error, resultPath){
+			if(error) return done(error);
+			skel.stylesheets(resultPath, function(error, result){
+				if (error) return done(error);
+				var data = {
+					context: {
+						name: name,
+						styles: result
+					}
+				};
+				skel.template(resultPath, data, function(error, result){
+					if (error) return done(error);
+					resultArray = result;
+					done();
+				});
+			});
+		});
+	})
+
+	it('should generated without error', function(done){
+		resultArray.should.have.length(2);
+    done();
+	})
+})

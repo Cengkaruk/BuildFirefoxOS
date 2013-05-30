@@ -9,6 +9,7 @@
     "should": "*",
     "slug": "*",
     "mkdirp": "*",
-    "fs-extra": "*"
+    "fs-extra": "*",
+    "hogan.js": "*"
   }
 }
