@@ -1,4 +1,4 @@
-var manifest = require('../generators/manifest.js'),
+var manifest = require('../lib/manifest.js'),
 	fs = require('fs'),
 	should = require('should');
 

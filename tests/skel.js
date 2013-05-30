@@ -1,4 +1,4 @@
-var skel = require('../generators/skel.js'),
+var skel = require('../lib/skel.js'),
 	fs = require('fs'),
 	should = require('should');
 
