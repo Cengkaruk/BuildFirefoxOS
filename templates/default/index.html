@@ -9,36 +9,10 @@
     <title>{{ name }}</title>
 </head>
 <body>
-    <section data-type="sidebar">
-      <header>
-        <menu type="toolbar">
-          <a href="#content"><span class="icon icon-add">add</span></a>
-        </menu>
-        <h1>Title <em>(9)</em></h1>
-      </header>
-      <nav>
-        <ul>
-          <li><a href="#content">label</a></li>
-          <li><a href="#content">label</a></li>
-          <li><a href="#content">label</a></li>
-          <li><a href="#content">label</a></li>
-        </ul>
-        <h2>Subtitle</h2>
-        <ul>
-          <li><a href="#content">label</a></li>
-          <li><a href="#content">label</a></li>
-          <li><a href="#content">label larger label than the </a></li>
-          <li><a href="#content">label</a></li>
-        </ul>
-      </nav>
-    </section>
-    <section id="drawer" role="region">
-      <header>
-        <a href="#content"><span class="icon icon-menu">hide sidebar</span></a>
-        <a href="#drawer_"><span class="icon icon-menu">show sidebar</span></a>
-        <h1>{{ name g}}</h1>
-      </header>
-      <div role="main"></div>
-    </section>
+  <section role="region">
+    <header class="fixed">
+      <h1>{{ name }}</h1>
+    </header>
+  </section>
 </body>
 </html>
