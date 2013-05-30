@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    {{ #styles }}
+      <link rel="stylesheet" type="text/css" href="{{ styles }}">
+    {{ /styles }}
+    <title>{{ name }}</title>
+</head>
+<body>
+  <form role="dialog" data-type="confirm">
+    <section>
+      <h1>{{ name }}</h1>
+      <p>You are currently offline. You came here through the manifest.appcache file.</p>
+    </section>
+    <menu>
+      <button>Cancel</button>
+      <button id="reload" class="reload">Reload</button>
+    </menu>
+  </form>
+  <script type="text/javascript">
+    var reload = document.getElementById("#reload");
+    if (reload) {
+      reload.onclick = function () {
+        location.reload(true);
+      };
+    }
+  </script>
+</body>
+</html>
