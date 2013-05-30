@@ -60,7 +60,7 @@ var stylesheets = function(path, options, callback){
 						var styleUnstableFile = './building-blocks/style_unstable.css';
 						fs.copy(styleUnstableFile, path + '/style_unstable.css', function(error){
 							if(error) return callback(error);
-							results.push(styleUnstableFile);
+							results.push('/assets/stylesheets/style_unstable.css');
 							if(!--pending) callback(null, results);
 						});
 					});
@@ -71,7 +71,7 @@ var stylesheets = function(path, options, callback){
 						var styleIconsFile = './building-blocks/style_icons.css';
 						fs.copy(styleIconsFile, path + '/style_icons.css', function(error){
 							if(error) return callback(error);
-							results.push(styleIconsFile);
+							results.push('/assets/stylesheets/style_icons.css');
 							if(!--pending) callback(null, results);
 						});
 					});
@@ -82,7 +82,7 @@ var stylesheets = function(path, options, callback){
 						var styleFile = './building-blocks/style.css';
 						fs.copy(styleFile, path + '/style.css', function(error){
 							if(error) return callback(error);
-							results.push(styleFile);
+							results.push('/assets/stylesheets/style.css');
 							if(!--pending) callback(null, results);
 						});
 					});
