@@ -10,6 +10,7 @@
     "slug": "*",
     "mkdirp": "*",
     "fs-extra": "*",
-    "hogan.js": "*"
+    "hogan.js": "*",
+    "commander": "*"
   }
 }

@@ -1,0 +1,57 @@
+#!/usr/bin/env node
+
+var program = require('commander'),
+	version = require('../package.json').version,
+	builder = require('../');
+
+program
+	.version(version);
+
+/* Webapp command */
+program
+	.command('webapp')
+	.description('(re)Generate .webapp')
+	.option('-p, --path', 'Path of app directory')
+	.action(function(path){
+		program.prompt({
+			name: 'Application Name : ',
+			description: 'Application Desc : ',
+			launchPath: 'Launch Path [index.html] : ',
+			icons: 'Icon Path (Minimal require 128x128) : ',
+			devName: 'Developer Name : ',
+			devURL: 'Developer URL : ',
+			defaultLocale: 'Default Locale [en] : '
+		}, function(promptData){
+			var data = {
+				name: promptData.name,
+				description: promptData.description,
+				launch_path: promptData.launchPath || 'index.html',
+				icons: {
+					128: promptData.icons
+				},
+				developer: {
+					name: promptData.devName,
+					url: promptData.devURL
+				},
+				default_locale: promptData.defaultLocale || 'en'
+			}
+			builder.manifest.webapp(path, data, function(error, result){
+				if(error) return console.log(error);
+				process.stdin.destroy();
+			});
+		});
+	});
+
+/* Appcache command */
+program
+	.command('appcache')
+	.description('(re)Generate Cache Manifest file')
+	.option('-p, --path', 'Path of app directory')
+	.action(function(path){
+		builder.manifest.appcache(path, function(error, result){
+			if(error) return console.log(error);
+			process.stdin.destroy();
+		});
+	});
+
+program.parse(process.argv);
