@@ -54,4 +54,22 @@ program
 		});
 	});
 
+/* Base app command */
+program
+	.command('skel')
+	.description('Generate base app directory and building-blocks stylesheets')
+	.option('-p, --path', 'Build app directory')
+	.option('-s, --style', 'Include building-blocks stylesheets')
+	.action(function(path, style){
+		if(typeof(path) === 'object') {
+			console.log('Path disabled');	
+		}
+		// builder.skel.base(path, function(error, result){
+		// 	if(error) return console.log(error);
+		// 	if(typeof(style) === 'object') {
+		// 		style = true;
+		// 	}
+		// });
+	});
+
 program.parse(process.argv);
